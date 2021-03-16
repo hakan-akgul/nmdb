@@ -16,7 +16,7 @@
         v-if="$route.name=='movies-id'"
 
         to="/"
-        class="absolute text-white sm:hidden"
+        class="absolute text-white"
         @click="$store.commit('TOGGLE_SIDEBAR')"
       >
         <ClientOnly>
