@@ -1,0 +1,28 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  @import 'fonts.css';
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  @apply antialiased;
+}
+*::selection {
+  @apply bg-purple-500;
+}
+button,
+input,
+a {
+  @apply cursor-default;
+}
+button:focus,
+input:focus,
+a:focus {
+  @apply outline-none;
+}
