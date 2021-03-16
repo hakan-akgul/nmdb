@@ -1,4 +1,9 @@
 export default {
+  target: 'static',
+  ssr: false,
+  generate: {
+    fallback: true
+  },
   head: {
     title: 'nmdb',
     htmlAttrs: {
