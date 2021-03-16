@@ -1,5 +1,11 @@
 # NMDb (Nuxt Movie Db)
 
+## !!! comment these lines in "nuxt.config.js" for SSR in local
+### these configs added for NETLIFY SSG
+* target
+* ssr
+* generate
+---
 ## Build Setup
 
 ```bash
@@ -11,7 +17,7 @@ $ yarn build
 $ yarn start
 
 ```
-
+---
 ## Briefing
 ```
 Added comments to functions (and some maybe confusing parts) for detailing.

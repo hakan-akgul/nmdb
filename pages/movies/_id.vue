@@ -1,17 +1,5 @@
 <template>
   <div class="relative">
-    <nuxt-link to="/" class="absolute z-30 text-white transition duration-300 top-16 left-10 hover:text-pink-400">
-      <ClientOnly>
-        <eva-icon
-          name="arrow-back"
-          width="30px"
-          height="30px"
-          size="2x"
-          class="fill-current"
-        />
-      </ClientOnly>
-    </nuxt-link>
-
     <div class="absolute z-10 w-screen h-screen bg-gradient-to-t to-transparent via-gray-900 from-gray-900" />
     <div class="absolute z-0 w-screen h-screen bg-center bg-no-repeat bg-cover" :style="{ backgroundImage: 'url( https://image.tmdb.org/t/p/w1280/' + details.backdrop_path + ')', }" />
     <div class="absolute w-screen h-screen opacity-90 bg-gradient-to-t to-indigo-600 from-transparent" />
