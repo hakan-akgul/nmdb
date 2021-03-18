@@ -1,10 +1,11 @@
 # NMDb (Nuxt Movie Db)
+### A project which used The Movie Database API
 
-## !!! comment these lines in "nuxt.config.js" for SSR in local
-### these configs added for NETLIFY SSG
-* target
-* ssr
-* generate
+> Vuejs, Nuxtjs, Tailwindcss, Vuex
+
+
+[Live demo](https://sleepy-khorana-040015.netlify.app/)
+
 ---
 ## Build Setup
 
@@ -18,7 +19,7 @@ $ yarn start
 
 ```
 ---
-## Briefing
+## Folder Structure
 ```
 Added comments to functions (and some maybe confusing parts) for detailing.
 Here is the basic folder structure and explanation of NMDb:
