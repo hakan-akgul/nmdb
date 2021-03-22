@@ -82,77 +82,41 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
-  data () {
-    return {
-      movies: [],
-      genres: []
-    }
-  },
-
-  // computed datas getting from store
   computed: {
-    page () {
-      return this.$store.state.page
-    },
-    activeGenre () {
-      return this.$store.state.activeGenre
-    },
-    toggleSidebar () {
-      return this.$store.state.toggleSidebar
-    }
+    ...mapState([
+      'movies',
+      'genres',
+      'page',
+      'activeGenre',
+      'toggleSidebar'
+    ])
   },
 
-  // when data changed, fetching new datas from api
   watch: {
     page () {
-      this.getMovies(this.page, this.activeGenre)
+      this.getMovies({ page: this.page, withGenres: this.activeGenre })
     },
     activeGenre () {
-      this.getMovies(this.page, this.activeGenre)
+      this.getMovies({ page: this.page, withGenres: this.activeGenre })
     }
   },
 
-  // when component created, fetching data from the api
   created () {
-    this.getMovies(this.page, this.activeGenre)
+    this.getMovies({ page: this.page, withGenres: this.activeGenre })
     this.getGenres()
   },
 
   methods: {
+    ...mapActions([
+      'getMovies', 'getGenres'
+    ]),
     // for identify active genre on sidebar
     checkGenres (id) {
       if (id === this.$route.params.with_genres) {
         return id
       }
-    },
-
-    // for fetching data from th api
-    async getMovies (page, withGenres) {
-      const movies = await this.$axios
-        .$get('/discover/movie', {
-          params: {
-            api_key: '87177b3b4633191717e245a03297cd7f',
-            page,
-            with_genres: withGenres,
-            language: 'en-US'
-          }
-        })
-        .then(this.$store.commit('SET_ACTIVE_GENRE', withGenres))
-
-      this.movies = movies.results
-    },
-
-    // for fetching genre data from the api
-    async getGenres () {
-      const genres = await this.$axios
-        .$get('/genre/movie/list', {
-          params: {
-            api_key: '87177b3b4633191717e245a03297cd7f',
-            language: 'en-US'
-          }
-        })
-      this.genres = Object.values(genres.genres)
     }
   }
 }

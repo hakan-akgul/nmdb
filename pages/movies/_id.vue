@@ -10,10 +10,10 @@
           <p class="text-6xl font-bold text-pink-600 ">
             {{ details.original_title }}
           </p>
-          <p class="mb-8 font-bold text-gray-200">
+          <p class="mb-8 font-bold text-purple-100">
             {{ details.tagline }}
           </p>
-          <p class="">
+          <p class="text-indigo-100 ">
             {{ details.overview }}
           </p>
         </div>
@@ -32,19 +32,19 @@
         </button>
       </div>
 
-      <div class="relative overflow-auto h-160">
+      <div class="relative overflow-auto text-white h-160">
         <transition mode="in-out" name="fade">
-          <div v-if="activeTab==='info'" class="container relative z-10 text-white">
+          <div v-if="activeTab==='info'" class="container relative z-10 ">
             <movies-info :details="details" />
           </div>
         </transition>
         <transition mode="in-out" name="fade">
-          <div v-if="activeTab==='credits'" class="container relative z-10 text-white">
+          <div v-if="activeTab==='credits'" class="container relative z-10 ">
             <movies-cast :credits="credits" />
           </div>
         </transition>
         <transition mode="in-out" name="fade">
-          <div v-if="activeTab==='review'" class="container relative z-10 text-white">
+          <div v-if="activeTab==='review'" class="container relative z-10 ">
             <movies-review :reviews="reviews" />
           </div>
         </transition>
@@ -55,37 +55,27 @@
 </template>
 
 <script>
-
+import { mapState, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      details: {},
-      credits: {},
-      reviews: {},
       activeTab: 'info'
     }
   },
+  computed: {
+    ...mapState([
+      'details', 'reviews', 'credits'
+    ])
+  },
   created () {
-    this.getData(this.$route.params.id, '')
-    this.getData(this.$route.params.id + '/credits', 'credits')
-    this.getData(this.$route.params.id + '/reviews', 'reviews')
+    this.getDetails({ uri: this.$route.params.id, whereToSave: 'details' })
+    this.getDetails({ uri: this.$route.params.id + '/credits', whereToSave: 'credits' })
+    this.getDetails({ uri: this.$route.params.id + '/reviews', whereToSave: 'reviews' })
   },
   methods: {
-    async getData (uri, whereToSave) {
-      const data = await this.$axios.$get(`/movie/${uri}`, {
-        params: {
-          api_key: '87177b3b4633191717e245a03297cd7f',
-          language: 'en-US'
-        }
-      })
-      if (whereToSave === '') {
-        this.details = data
-      } else if (whereToSave === 'credits') {
-        this.credits = data
-      } else if (whereToSave === 'reviews') {
-        this.reviews = data
-      };
-    }
+    ...mapActions([
+      'getDetails'
+    ])
   }
 }
 </script>
