@@ -4,7 +4,7 @@
 > Vuejs, Nuxtjs, Tailwindcss, Vuex
 
 
-[Live demo](https://sleepy-khorana-040015.netlify.app/)
+[Live demo](https://nmdb.netlify.app/)
 
 ---
 ## Build Setup
