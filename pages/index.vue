@@ -63,7 +63,7 @@
         <button
           class="text-white transition-colors duration-300 hover:text-pink-600"
           :class="{'text-pink-600':activeGenre===null }"
-          @click="$store.commit('SET_ACTIVE_GENRE',null),$store.commit('RESET_PAGE'),$store.commit('TOGGLE_SIDEBAR')"
+          @click="$store.commit('SET_ACTIVE_GENRE',null),$store.commit('RESET_PAGE')"
         >
           All Genres
         </button>
@@ -72,7 +72,7 @@
           :key="genre.id"
           class="text-white transition-colors duration-300 hover:text-pink-600"
           :class="{'text-pink-600':genre.id===activeGenre }"
-          @click="$store.commit('SET_ACTIVE_GENRE',genre.id),$store.commit('RESET_PAGE'),$store.commit('TOGGLE_SIDEBAR')"
+          @click="$store.commit('SET_ACTIVE_GENRE',genre.id),$store.commit('RESET_PAGE')"
         >
           {{ genre.name }}
         </button>

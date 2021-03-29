@@ -39,10 +39,13 @@ const mutations = {
     state.movies = payload
   },
 
-  /* --------------------------------- TOGGLE --------------------------------- */
+  /* --------------------------------- SIDEBAR -------------------------------- */
 
   TOGGLE_SIDEBAR (state) {
     state.toggleSidebar = !state.toggleSidebar
+  },
+  CLOSE_SIDEBAR (state) {
+    state.toggleSidebar = false
   }
 }
 export default mutations

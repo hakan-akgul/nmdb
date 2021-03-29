@@ -1,19 +1,26 @@
+/* eslint-disable no-console */
 const actions = {
 
   /* ------------------------------- GETDETAILS ------------------------------- */
 
   async getDetails ({ commit }, payload) {
     const whereToSave = payload.whereToSave
-    const response = await this.$axios.$get(`/movie/${payload.uri}`, {
-      params: this.state.params
-    })
-    commit('SET_MOVIE_INFOS', { response, whereToSave })
+    await this.$axios
+      .$get(`/movie/${payload.uri}`, {
+        params: this.state.params
+      })
+      .then((response) => {
+        commit('SET_MOVIE_INFOS', { response, whereToSave })
+      })
+      .catch((error) => {
+        console.log(error.response)
+      })
   },
 
   /* -------------------------------- GETMOVIES ------------------------------- */
 
   async getMovies ({ commit }, payload) {
-    const response = await this.$axios
+    await this.$axios
       .$get('/discover/movie', {
         params: {
           api_key: '87177b3b4633191717e245a03297cd7f',
@@ -22,19 +29,29 @@ const actions = {
           with_genres: payload.withGenres
         }
       })
-    commit('SET_ACTIVE_GENRE', payload.withGenres)
-    commit('SET_MOVIES', response.results)
-    commit('SET_PAGE', payload.page)
+      .then((response) => {
+        commit('SET_ACTIVE_GENRE', payload.withGenres)
+        commit('SET_MOVIES', response.results)
+        commit('SET_PAGE', payload.page)
+      })
+      .catch((error) => {
+        console.log(error.response)
+      })
   },
 
   /* -------------------------------- GETGENRES ------------------------------- */
 
   async getGenres ({ commit }) {
-    const response = await this.$axios
+    await this.$axios
       .$get('/genre/movie/list', {
         params: this.state.params
       })
-    commit('SET_GENRES', response.genres)
+      .then((response) => {
+        commit('SET_GENRES', response.genres)
+      })
+      .catch((error) => {
+        console.log(error.response)
+      })
   }
 }
 export default actions

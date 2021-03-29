@@ -19,7 +19,10 @@ export default {
 
   css: [],
 
-  plugins: [{ src: '~/plugins/icons.js', mode: 'client' }],
+  plugins: [
+    { src: '~/plugins/icons.js', mode: 'client' },
+    { src: '~/plugins/directive.client.js', mode: 'client' }
+  ],
 
   components: true,
 

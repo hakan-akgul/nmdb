@@ -3,6 +3,7 @@
     <transition name="fade">
       <button
         v-if="$route.name=='index'"
+        v-click-outside
         class="absolute text-white sm:hidden"
         @click="$store.commit('TOGGLE_SIDEBAR')"
       >
@@ -14,10 +15,9 @@
     <transition name="fade">
       <nuxt-link
         v-if="$route.name=='movies-id'"
-
         to="/"
         class="absolute text-white"
-        @click="$store.commit('TOGGLE_SIDEBAR')"
+        @click="$store.commit('CLOSE_SIDEBAR')"
       >
         <ClientOnly>
           <eva-icon name="arrow-back" width="24px" height="24px" fill="#DB2777" />
