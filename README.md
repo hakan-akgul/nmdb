@@ -4,7 +4,6 @@
 > Vuejs, Nuxtjs, Tailwindcss, Vuex
 
 
-[Live demo](https://nmdb.netlify.app/)
 
 ---
 ## Build Setup
